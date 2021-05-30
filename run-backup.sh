@@ -22,7 +22,7 @@ BACKUP_PASSPHRASE=$(cat "$BORG_PASSPHRASE_FILE")
 # Discover the name of the volumes to backup
 VOLUME_CRYPT=$("$DOCKER_BIN" inspect --format '{{ range .Mounts }}{{ if eq .Destination "/mail_crypt" }}{{ .Name }}{{ end }}{{ end }}' $("$DOCKER_COMPOSE_BIN" -q dovecot-mailcow))
 VOLUME_VMAIL_DIR=$("$DOCKER_BIN" inspect --format '{{ range .Mounts }}{{ if eq .Destination "/var/vmail" }}{{ .Name }}{{ end }}{{ end }}' $("$DOCKER_COMPOSE_BIN" ps -q dovecot-mailcow))
-VOLUME_VMAIL_INDEX=$("$DOCKER_BIN" inspect --format '{{ range .Mounts }}{{ if eq .Destination "/var/vmail_index" }}{{ .Name }}{{ end }}{{ end }}' $(ps -q dovecot-mailcow))
+VOLUME_VMAIL_INDEX=$("$DOCKER_BIN" inspect --format '{{ range .Mounts }}{{ if eq .Destination "/var/vmail_index" }}{{ .Name }}{{ end }}{{ end }}' $("$DOCKER_COMPOSE_BIN" ps -q dovecot-mailcow))
 
 print_debug () {
 	echo "DOCKER_BIN => $DOCKER_BIN"
